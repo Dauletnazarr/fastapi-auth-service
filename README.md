@@ -24,7 +24,7 @@ cp .env.example .env
 # (edit the .env secrets if needed)
 
 docker compose up --build
-# API will be on http://localhost:8000
+# API will be on http://127.0.0.1:8000
 ```
 
 Then open docs: http://localhost:8000/docs
@@ -47,6 +47,7 @@ docker compose exec api pytest -q
 - `POST /auth/logout` – invalidate refresh token
 - `GET /auth/me` – current user
 - `POST /auth/change-password` – change password
+- `DELETE /auth/delete-account - delete account
 - (stubs) `POST /auth/request-reset`, `POST /auth/reset-password`, `POST /auth/verify-email`
 
 See complete OpenAPI at `/docs`.
@@ -68,18 +69,22 @@ alembic/
   script.py.mako
   versions/
 tests/
-  test_auth.py
+  conftest.py
+  test_auth_all.py
 Dockerfile
 docker-compose.yml
 alembic.ini
 requirements.txt
 Makefile
 .env.example
+.gitignore
+REAMDE.md
+pytest.ini
 ```
 
 ## Notes
 - Refresh tokens are stored & rotated in DB (`user_tokens` table). Old tokens are invalid after refresh/logout.
 - Access tokens are short-lived (default 15min).
 - Both tokens are returned in JSON; you can also adapt to httponly cookies easily.
-- Email flows are stubbed; wire them to your provider (e.g., Amazon SES, Mailgun).
+- Email flows are stubbed; wire them to your provider (e.g., Yandex).
 ```
