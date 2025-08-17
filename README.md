@@ -87,7 +87,7 @@ pytest.ini
 - Access tokens are short-lived (default 15min).
 - Both tokens are returned in JSON; you can also adapt to httponly cookies easily.
 - Email flows are stubbed; wire them to your provider (e.g., Yandex).
-```
+
 
 Developer:
 * [Dauletnazar Mambetnazarov.](https://github.com/Dauletnazarr/)
